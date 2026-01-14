@@ -1,3 +1,4 @@
+
 export interface ServiceItem {
   id: string;
   title: string;
@@ -9,21 +10,47 @@ export interface PortfolioItem {
   id: string;
   client: string;
   image: string;
-  problem: string;
-  strategy: string;
-  execution: string;
-  result: string;
+  label: string;
+  result?: string;
+}
+
+export interface PricingPackage {
+  id: string;
+  name: string;
+  price: string;
+  features: string[];
+  cta: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
 }
 
 export interface BlogPost {
   id: string;
+  slug: string;
   title: string;
-  category: string;
+  subtitle: string;
+  category: 'Growth' | 'Design' | 'Productivity';
+  readTime: string;
+  summary: string;
+  content: string;
+  takeaways: string[];
+  sources: { title: string; url: string }[];
 }
 
 export enum QuizOption {
   NO_REACH = "No reach.",
-  MS_PAINT = "My content looks like it was made on MS Paint.",
-  GHOST_TOWN = "I post once a month (on a good month).",
-  MONEY_PIT = "Ads eat my money, don't bring results."
+  MS_PAINT = "Content looks unprofessional.",
+  GHOST_TOWN = "I post once a month.",
+  MONEY_PIT = "Ads eat my money."
+}
+
+export interface CookiePreferences {
+  essential: boolean;
+  analytics: boolean;
+  performance: boolean;
+  personalization: boolean;
+  marketing: boolean;
 }

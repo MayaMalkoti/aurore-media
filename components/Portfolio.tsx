@@ -1,91 +1,77 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PortfolioItem } from '../types';
 
-const projects: PortfolioItem[] = [
-  {
-    id: 'cafe-brew',
-    client: 'The Daily Grind',
-    image: 'https://picsum.photos/seed/coffee/600/800',
-    problem: 'Great coffee, zero brand presence.',
-    strategy: 'Caffeine-drip campaign + scroll-stopping reels.',
-    execution: 'Mockups of edgy posts.',
-    result: 'From 0 → 5,000 reach.'
-  },
-  {
-    id: 'tech-startup',
-    client: 'Neon Systems',
-    image: 'https://picsum.photos/seed/tech/600/800',
-    problem: 'Confusing product, bored audience.',
-    strategy: 'Simplified explainers + meme marketing.',
-    execution: 'Clean, high-contrast carousels.',
-    result: '300% Engagement increase.'
-  },
-  {
-    id: 'fashion-brand',
-    client: 'Velvet threads',
-    image: 'https://picsum.photos/seed/fashion/600/800',
-    problem: 'Lost in the feed clutter.',
-    strategy: 'Visual ASM and lifestyle branding.',
-    execution: 'Cinematic reels.',
-    result: 'Sold out launch collection.'
-  },
-  {
-    id: 'fitness-coach',
-    client: 'Iron Will',
-    image: 'https://picsum.photos/seed/gym/600/800',
-    problem: 'Generic fitness advice.',
-    strategy: 'Personality-driven content.',
-    execution: 'Raw, unpolished vlogs.',
-    result: 'Doubled lead intake.'
-  }
+interface PortfolioProps {
+  onOpenAudit: () => void;
+}
+
+const demos = [
+  { id: 1, title: 'Short-Form Edit', label: 'Pacing Demo', img: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=60&w=600' },
+  { id: 2, title: 'Product Reel', label: 'Style Demo', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=60&w=600' },
+  { id: 3, title: 'Talking-Head', label: 'Hook Demo', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=60&w=600' },
+  { id: 4, title: 'Cinematic B-Roll', label: 'Atmosphere', img: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=60&w=600' },
+  { id: 5, title: 'Color + Caption', label: 'Split Screen', img: 'https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&q=60&w=600' },
+  { id: 6, title: 'UGC Style', label: 'Natural Edit', img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=60&w=600' },
 ];
 
-const Portfolio: React.FC = () => {
+const Portfolio: React.FC<PortfolioProps> = ({ onOpenAudit }) => {
   return (
-    <section id="portfolio" className="py-24 bg-black px-6">
+    <section id="portfolio" className="py-32 dark:bg-black bg-white px-6 md:px-12 border-t dark:border-white/5 border-black/5 gpu">
       <div className="container mx-auto">
-        <motion.div 
-          className="mb-16 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <span className="text-yellow-500 font-mono mb-2 block">03. PORTFOLIO</span>
-          <h2 className="font-serif text-5xl md:text-7xl mb-4">Concept Projects</h2>
-          <p className="text-neutral-500">Proof of skill. No fluff.</p>
-        </motion.div>
+        <div className="mb-32 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="max-w-xl"
+          >
+            <span className="label-mini text-neon-gold mb-6 block">02. SELECTION</span>
+            <h2 className="h-large uppercase tracking-ultra text-white">PORTFOLIO <br/>IN PROGRESS<span className="text-neon-gold">.</span></h2>
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="max-w-xs lg:text-right"
+          >
+             <p className="text-neutral-400 font-medium text-xs uppercase tracking-widest mb-6">
+                We’re building our public portfolio. These style demos show what we produce daily.
+             </p>
+             <button 
+               onClick={onOpenAudit}
+               data-cursor="CLICK"
+               className="label-mini text-neon-gold border-b border-neon-gold inline-block pb-1 cursor-pointer hover:opacity-70 transition-opacity"
+             >
+                Request a free sample edit
+             </button>
+          </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          {projects.map((project, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
+          {demos.map((item, index) => (
             <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 100 }}
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className={`group cursor-pointer ${index % 2 !== 0 ? 'md:mt-24' : ''}`} // Staggered layout effect
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: index * 0.1, duration: 0.8 }}
+              className="group relative aspect-square overflow-hidden gpu cursor-trigger"
+              data-cursor="VIEW DEMO"
             >
-              <div className="relative overflow-hidden aspect-[3/4] mb-6">
-                <img 
-                  src={project.image} 
-                  alt={project.client} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
-                />
-                
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-8 text-center">
-                    <p className="text-yellow-500 font-bold uppercase text-xs tracking-widest mb-2">The Strategy</p>
-                    <p className="font-serif text-xl italic mb-4">"{project.strategy}"</p>
-                    <div className="h-[1px] w-12 bg-white mx-auto mb-4"></div>
-                    <p className="text-sm font-sans">{project.result}</p>
-                </div>
-              </div>
-              
-              <div className="flex justify-between items-baseline border-b border-neutral-800 pb-4 group-hover:border-yellow-500 transition-colors">
-                <h3 className="text-2xl font-serif">{project.client}</h3>
-                <span className="text-xs font-mono text-neutral-500 group-hover:text-white">VIEW CASE</span>
-              </div>
+               <img 
+                 src={item.img} 
+                 loading="lazy"
+                 decoding="async"
+                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105 img-reveal" 
+                 alt={item.title} 
+               />
+               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity p-10 flex flex-col justify-end pointer-events-none">
+                  <span className="label-mini text-neon-gold mb-3">{item.label}</span>
+                  <h3 className="text-white text-2xl font-black uppercase tracking-tighter">{item.title}</h3>
+               </div>
             </motion.div>
           ))}
         </div>

@@ -1,36 +1,46 @@
-import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import { BlogPost } from '../types';
 
-const resources: BlogPost[] = [
-    { id: '1', title: 'Why your Instagram isn’t growing (and why it’s not the algorithm’s fault).', category: 'Growth' },
-    { id: '2', title: '5 Carousel Tricks That Make People Swipe Instead of Scroll.', category: 'Design' },
-    { id: '3', title: 'The Content Calendar Template Your Competitors Don’t Have.', category: 'Productivity' },
+import React from 'react';
+import { ArrowUpRight, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { insights } from '../data/insights';
+
+interface FooterProps {
+  onNavigate: (path: string) => void;
+  onOpenCookies?: () => void;
+}
+
+const socialLinks = [
+  { name: 'Instagram', url: 'https://www.instagram.com/aurore_media', icon: <Instagram size={14} /> },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/aurore-media', icon: <Linkedin size={14} /> },
+  { name: 'X', url: 'https://x.com/AuroreMedia', icon: <Twitter size={14} /> }
 ];
 
-const Footer: React.FC = () => {
+const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenCookies }) => {
   return (
-    <footer className="bg-black pt-24 pb-12 px-6 border-t border-white/10">
+    <footer className="bg-black pt-32 pb-16 px-6 md:px-12 border-t border-white/10 gpu">
       <div className="container mx-auto">
         
         {/* Resources Section */}
-        <div id="resources" className="mb-24">
-             <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-white/10 pb-6">
-                <div>
-                    <span className="text-yellow-500 font-mono mb-2 block">06. RESOURCE HUB</span>
-                    <h2 className="font-serif text-4xl">Free Stuff.</h2>
+        <div id="resources" className="mb-32">
+             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <div className="max-w-md">
+                    <span className="text-neon-gold font-sans font-black text-[12px] tracking-[0.4em] uppercase mb-6 block">05. INSIGHTS</span>
+                    <h2 className="font-sans font-black text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-4 text-white">FUEL<span className="text-neon-gold">.</span></h2>
                 </div>
-                <p className="text-neutral-500 italic mt-4 md:mt-0">Because we're nice like that. Useful ammo.</p>
+                <p className="text-neutral-400 font-medium text-sm uppercase tracking-widest text-right mb-4">Essential reading for the digitally ambitious.</p>
              </div>
 
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {resources.map((res) => (
-                    <div key={res.id} className="group cursor-pointer">
-                        <div className="flex justify-between items-center mb-4">
-                            <span className="text-xs font-mono border border-white/20 px-2 py-1 rounded text-neutral-400">{res.category}</span>
-                            <ArrowUpRight className="text-neutral-600 group-hover:text-yellow-500 transition-colors" size={18} />
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10">
+                {insights.map((res) => (
+                    <div 
+                        key={res.id} 
+                        onClick={() => onNavigate(`/insights/${res.slug}`)}
+                        className="group bg-black p-10 hover:bg-neon-gold transition-all duration-500 cursor-pointer"
+                    >
+                        <div className="flex justify-between items-start mb-12">
+                            <span className="text-[12px] font-bold uppercase tracking-widest text-white/40 group-hover:text-black group-hover:opacity-100">{res.category}</span>
+                            <ArrowUpRight className="text-white/30 group-hover:text-black transition-all" size={20} />
                         </div>
-                        <h3 className="font-serif text-xl leading-snug group-hover:underline decoration-yellow-500 underline-offset-4 transition-all">
+                        <h3 className="font-sans font-black text-2xl uppercase tracking-tighter leading-tight text-white group-hover:text-black transition-colors">
                             {res.title}
                         </h3>
                     </div>
@@ -38,42 +48,64 @@ const Footer: React.FC = () => {
              </div>
         </div>
 
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-            <div className="lg:col-span-2">
-                <div className="font-serif font-bold text-3xl tracking-tighter mb-6">
-                    AURORE<span className="text-yellow-500">.</span>
+        {/* Bottom Navigation */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 mb-24">
+            <div className="col-span-2 lg:col-span-3">
+                <div className="font-sans font-black text-3xl tracking-tighter uppercase mb-8 text-white">
+                    AURORE<span className="text-neon-gold">.</span>
                 </div>
-                <p className="text-neutral-400 max-w-sm mb-6">
-                    Join the movement. Aurore Media is where brands stop posting & start performing.
+                <p className="text-neutral-300 font-medium text-base max-w-xs mb-12 leading-relaxed">
+                    A creative collective dedicated to turning attention into legacy. High-end social strategy and visual disruption.
                 </p>
-                <div className="flex gap-4">
-                     {['Insta', 'LinkedIn', 'YouTube', 'Newsletter'].map(social => (
-                         <a key={social} href="#" className="text-sm font-bold uppercase hover:text-yellow-500 transition-colors">{social}</a>
-                     ))}
-                </div>
             </div>
 
-            <div>
-                <h4 className="font-mono text-sm text-neutral-500 mb-6">SITEMAP</h4>
-                <ul className="space-y-2">
-                    {['Services', 'Portfolio', 'About', 'Contact'].map(item => (
-                        <li key={item}><a href={`#${item.toLowerCase()}`} className="text-neutral-300 hover:text-white transition-colors">{item}</a></li>
-                    ))}
-                </ul>
+            <div className="flex flex-col gap-4">
+                <h4 className="text-[12px] font-bold uppercase tracking-[0.4em] text-white/30 mb-4">Nav</h4>
+                {['Services', 'Portfolio', 'About', 'Contact'].map(item => (
+                    <button key={item} onClick={() => onNavigate('/')} className="text-sm font-bold uppercase tracking-widest text-white/70 hover:text-neon-gold transition-colors text-left">{item}</button>
+                ))}
             </div>
 
-            <div>
-                <h4 className="font-mono text-sm text-neutral-500 mb-6">LOCATION</h4>
-                <p className="text-neutral-300">New Delhi, India</p>
-                <p className="text-neutral-300">Vancouver, Canada</p>
+            <div className="flex flex-col gap-4">
+                <h4 className="text-[12px] font-bold uppercase tracking-[0.4em] text-white/30 mb-4">Social</h4>
+                {socialLinks.map(link => (
+                    <a 
+                      key={link.name} 
+                      href={link.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-sm font-bold uppercase tracking-widest text-white/70 hover:text-neon-gold transition-all flex items-center gap-2 group/social"
+                    >
+                      <span className="opacity-50 group-hover/social:opacity-100 transition-opacity">
+                        {link.icon}
+                      </span>
+                      {link.name}
+                    </a>
+                ))}
+            </div>
+
+            <div className="flex flex-col gap-4">
+                <h4 className="text-[12px] font-bold uppercase tracking-[0.4em] text-white/30 mb-4">Legal</h4>
+                <button 
+                  onClick={() => onNavigate('/cookies')} 
+                  className="text-sm font-bold uppercase tracking-widest text-white/70 hover:text-neon-gold transition-colors text-left"
+                >
+                  Cookie Policy
+                </button>
+                <button 
+                  onClick={onOpenCookies} 
+                  className="text-sm font-bold uppercase tracking-widest text-white/70 hover:text-neon-gold transition-colors text-left"
+                >
+                  Cookie Preferences
+                </button>
+                <a href="#" className="text-sm font-bold uppercase tracking-widest text-white/70 hover:text-neon-gold transition-colors">Terms of Use</a>
             </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-xs text-neutral-600">
-            <p>© {new Date().getFullYear()} Aurore Media.</p>
-            <p className="flex items-center gap-2 mt-2 md:mt-0">
-                <span className="text-yellow-500">⚡</span> Attention is Currency.
+        <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 text-[12px] font-bold uppercase tracking-[0.2em] text-white/50">
+            <p>© {new Date().getFullYear()} Aurore Media Studio. All rights reserved.</p>
+            <p className="flex items-center gap-2 mt-4 md:mt-0">
+                Crafted for the bold. <span className="text-neon-gold animate-pulse">⚡</span>
             </p>
         </div>
       </div>
