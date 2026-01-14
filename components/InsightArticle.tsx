@@ -83,7 +83,7 @@ const InsightArticle: React.FC<InsightArticleProps> = ({ post, onBack, onNavigat
             </div>
 
             {/* Takeaways Box */}
-            <div id="takeaways" className="bg-aurore-gray border border-white/10 p-12 md:p-16 mb-20 relative overflow-hidden group">
+            <div id="takeaways" className="bg-aurore-gray border border-white/10 p-12 md:p-16 mb-20 relative overflow-hidden group text-left">
               <div className="absolute top-0 left-0 w-1 h-full bg-neon-purple" />
               <h3 className="font-sans font-black text-2xl uppercase tracking-tighter mb-10 text-white">The Bottom Line</h3>
               <div className="space-y-6">
@@ -94,27 +94,6 @@ const InsightArticle: React.FC<InsightArticleProps> = ({ post, onBack, onNavigat
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Conversion CTA */}
-            <div className="mt-32 p-12 md:p-20 bg-neon-purple text-white relative overflow-hidden">
-               <div className="relative z-10">
-                 <h2 className="font-sans font-black text-4xl md:text-6xl uppercase tracking-ultra leading-none mb-8">
-                   Stop guessing. <br/>Start growing.
-                 </h2>
-                 <div className="flex flex-col sm:flex-row gap-6">
-                    <button 
-                      onClick={onOpenAudit}
-                      className="h-16 px-10 bg-white text-black label-mini flex items-center justify-center hover:bg-black hover:text-white transition-all shadow-xl"
-                    >
-                      Get a Free Audit
-                    </button>
-                    <button onClick={onBack} className="h-16 px-10 border border-white/20 hover:bg-white/10 label-mini transition-all">
-                      More Insights
-                    </button>
-                 </div>
-               </div>
-               <div className="absolute top-1/2 right-[-10%] -translate-y-1/2 text-[15rem] font-black opacity-10 pointer-events-none select-none tracking-ultra">GO</div>
             </div>
 
             {/* Related Posts */}

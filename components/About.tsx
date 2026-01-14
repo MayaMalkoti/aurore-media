@@ -21,7 +21,7 @@ const About: React.FC = () => {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
               {[
-                { t: "Free Audit", d: "We provide real value before a single dollar is spent." },
+                { t: "Strategic ROI", d: "We focus on content that drives real business results, not just vanity likes." },
                 { t: "Sample Edit", d: "If we're a fit, we'll do one sample using your raw footage." },
                 { t: "Direct Access", d: "No account managers. You talk to the people doing the work." },
                 { t: "Portfolio Focused", d: "We're building our legacy, which means your growth is our growth." }

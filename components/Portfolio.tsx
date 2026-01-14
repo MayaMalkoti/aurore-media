@@ -37,16 +37,9 @@ const Portfolio: React.FC<PortfolioProps> = ({ onOpenAudit }) => {
             transition={{ duration: 1 }}
             className="max-w-xs lg:text-right"
           >
-             <p className="text-neutral-400 font-medium text-xs uppercase tracking-widest mb-6">
+             <p className="text-neutral-400 font-medium text-xs uppercase tracking-widest">
                 We’re building our public portfolio. These style demos show what we produce daily.
              </p>
-             <button 
-               onClick={onOpenAudit}
-               data-cursor="CLICK"
-               className="label-mini text-neon-gold border-b border-neon-gold inline-block pb-1 cursor-pointer hover:opacity-70 transition-opacity"
-             >
-                Request a free sample edit
-             </button>
           </motion.div>
         </div>
 

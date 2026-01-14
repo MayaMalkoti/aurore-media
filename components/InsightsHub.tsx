@@ -48,12 +48,6 @@ const InsightsHub: React.FC<InsightsHubProps> = ({ onNavigate, onOpenAudit }) =>
               Research-backed guides to help you transition from vanity metrics to real, conversion-focused authority.
             </p>
             <div className="flex flex-wrap gap-8">
-              <button 
-                onClick={onOpenAudit}
-                className="h-16 px-12 bg-white text-black label-mini flex items-center justify-center hover:bg-neon-purple hover:text-white transition-all transform hover:scale-105 shadow-2xl"
-              >
-                Get a Free Audit
-              </button>
               <a href="#featured" className="h-16 px-12 border border-white/10 text-white label-mini flex items-center justify-center hover:bg-white/5 transition-all">
                 Browse Content
               </a>
@@ -62,7 +56,6 @@ const InsightsHub: React.FC<InsightsHubProps> = ({ onNavigate, onOpenAudit }) =>
         </div>
       </section>
 
-      {/* ... previous sections remain same ... */}
       <section id="featured" className="py-24 px-6">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-white/10 border border-white/10">
@@ -169,28 +162,18 @@ const InsightsHub: React.FC<InsightsHubProps> = ({ onNavigate, onOpenAudit }) =>
         </div>
       </section>
 
-      {/* ... and in the final CTA ... */}
       <section className="py-48 px-6 border-t border-white/5 bg-[radial-gradient(circle_at_bottom,rgba(176,38,255,0.08)_0%,transparent_50%)]">
         <div className="container mx-auto max-w-5xl text-center">
             <h2 className="font-sans font-black text-7xl md:text-[9vw] uppercase tracking-ultra leading-none mb-20">
-              READY FOR <br/>A <span className="text-neon-purple">REAL AUDIT?</span>
+              STAY <br/><span className="text-neon-purple">AMBITIOUS.</span>
             </h2>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-12">
-               <button 
-                 onClick={onOpenAudit}
-                 className="h-20 px-16 bg-white text-black label-mini flex items-center justify-center transition-all transform hover:scale-[1.05] shadow-2xl shadow-white/10"
-               >
-                 Get a Free Audit
-               </button>
                <a 
                  href="mailto:auroreltd234@gmail.com" 
                  className="flex items-center gap-5 label-mini text-white/70 hover:text-white transition-all text-lg"
                >
-                 <Mail size={24} className="text-neon-purple" /> Email us at auroreltd234@gmail.com
+                 <Mail size={24} className="text-neon-purple" /> auroreltd234@gmail.com
                </a>
-            </div>
-            <div className="mt-20 flex items-center justify-center gap-5 text-red-500 text-[12px] font-black uppercase tracking-[0.4em]">
-               <AlertTriangle size={18} className="animate-pulse" /> Limited slots weekly for free profile audits.
             </div>
         </div>
       </section>

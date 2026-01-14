@@ -1,10 +1,11 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, X } from 'lucide-react';
 
 const WhoFor: React.FC = () => {
   return (
-    <section className="py-32 dark:bg-black bg-white px-6 md:px-12 border-t dark:border-white/5 border-black/5">
+    <section id="contact" className="py-32 dark:bg-black bg-white px-6 md:px-12 border-t dark:border-white/5 border-black/5">
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           <motion.div 
